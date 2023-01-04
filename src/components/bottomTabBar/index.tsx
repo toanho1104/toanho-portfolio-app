@@ -38,7 +38,6 @@ export const CustomTabBar = ({
               : route.name;
 
           const isFocused = state.index === index;
-          console.log('is', isFocused);
           const onPress = () => {
             const event = navigation.emit({
               type: 'tabPress',
