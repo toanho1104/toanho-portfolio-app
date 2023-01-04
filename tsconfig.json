@@ -8,8 +8,13 @@
     "skipLibCheck": true ,
     "baseUrl": ".",
      "paths": {
-       "*": ["src/*"],
        "@components/*": ["src/components/*"],
+       "@stacks/*": ["src/stacks/*"],
+       "@types/*": ["src/types/*"],
+       "@assets/*": ["src/assets/*"],
+
+
+
      },                                
   }
 }

@@ -10,6 +10,9 @@ module.exports = {
         alias: {
           tests: ['./tests/'],
           '@components': './src/components',
+          '@stacks': './src/stacks',
+          '@types': './src/types',
+          '@assets': './src/assets',
         },
       },
     ],
