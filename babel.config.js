@@ -13,6 +13,8 @@ module.exports = {
           '@stacks': './src/stacks',
           '@types': './src/types',
           '@assets': './src/assets',
+          '@hooks': './src/hooks',
+          '@utils': './src/utils',
         },
       },
     ],
