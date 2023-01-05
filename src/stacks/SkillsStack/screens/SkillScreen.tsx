@@ -1,12 +1,17 @@
 import React from 'react';
-import {Text, View} from 'react-native';
+import {useTranslation} from 'react-i18next';
+import {Text, TouchableOpacity, View} from 'react-native';
 interface IProps {}
 export const SkillScreen = ({}: IProps) => {
-  console.log();
-
+  const {t, i18n} = useTranslation(['skill']);
+  console.log({t});
+  const _handleChangeLangues = () => {
+    i18n.changeLanguage('vn');
+  };
   return (
-    <View>
+    <TouchableOpacity onPress={_handleChangeLangues}>
       <Text>SkillScreen</Text>
-    </View>
+      <Text>{t('skill')}</Text>
+    </TouchableOpacity>
   );
 };
