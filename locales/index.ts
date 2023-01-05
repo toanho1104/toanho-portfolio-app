@@ -3,14 +3,15 @@ import {initReactI18next} from 'react-i18next';
 
 import translationVn from './vn/demoVn.json';
 import translationEn from './en/demoEn.json';
-import skill from './en/skill.json';
+import skillEn from './en/skill.json';
+import skillVn from './vn/skill.json';
 
 export const resources = {
   en: {
     translation: translationEn,
-    skill: skill,
+    skill: skillEn,
   },
-  vn: {translation: translationVn},
+  vn: {translation: translationVn, skill: skillVn},
 };
 
 i18next

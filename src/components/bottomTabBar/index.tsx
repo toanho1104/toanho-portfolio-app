@@ -11,7 +11,8 @@ import {
 import {TBottomStackParamList} from '@types/stacksType';
 import {isIosPlatform} from '@utils/checks';
 import {widthScale} from '@utils/dimensions';
-import React, {Fragment} from 'react';
+import React, {Fragment, useCallback, useMemo} from 'react';
+import {useTranslation} from 'react-i18next';
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 
 export type BottomTabBarProps = {
@@ -25,6 +26,22 @@ export const CustomTabBar = ({
   descriptors,
   navigation,
 }: BottomTabBarProps) => {
+  const {t} = useTranslation(['skill']);
+  const BOTTOM_TAB_BAR_DATA: TBottomStackParamList = useMemo(() => {
+    return {
+      Contact: {
+        name: t('de'),
+        true: <Icon name="contract" size={24} fill="#4705b9" />,
+        false: <Icon name="contract" size={24} fill="black" />,
+      },
+      Skill: {
+        name: t('Skill'),
+        true: <Icon name="skill" size={24} fill="#4705b9" />,
+        false: <Icon name="skill" size={24} fill="black" />,
+      },
+    };
+  }, [t]);
+
   return (
     <>
       <View style={styles.container}>
@@ -69,7 +86,7 @@ export const CustomTabBar = ({
                 onLongPress={onLongPress}
                 style={styles.innerItem}>
                 {
-                  IconMapper[label as keyof TBottomStackParamList][
+                  BOTTOM_TAB_BAR_DATA[label as keyof TBottomStackParamList][
                     isFocused as any
                   ]
                 }
@@ -80,7 +97,7 @@ export const CustomTabBar = ({
                       styles.label,
                       isFocused && styles.focused,
                     ])}>
-                    {label}
+                    {BOTTOM_TAB_BAR_DATA[label].name}
                   </Text>
                 )}
               </TouchableOpacity>
@@ -92,17 +109,6 @@ export const CustomTabBar = ({
     </>
   );
 };
-
-const IconMapper: TBottomStackParamList = {
-  Contact: {
-    true: <Icon name="contract" size={24} fill="#673ab7" />,
-    false: <Icon name="contract" size={24} fill="black" />,
-  },
-  Skill: {
-    true: <Icon name="skill" size={24} fill="#673ab7" />,
-    false: <Icon name="skill" size={24} fill="black" />,
-  },
-} as const;
 
 const styles = StyleSheet.create({
   container: {

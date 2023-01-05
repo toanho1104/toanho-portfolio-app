@@ -11,7 +11,7 @@ export const SkillScreen = ({}: IProps) => {
   return (
     <TouchableOpacity onPress={_handleChangeLangues}>
       <Text>SkillScreen</Text>
-      <Text>{t('skill')}</Text>
+      <Text>{t('Skill')}</Text>
     </TouchableOpacity>
   );
 };
