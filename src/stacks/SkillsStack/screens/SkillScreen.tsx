@@ -1,3 +1,4 @@
+import {LottieImage} from '@components/lottie';
 import {useTranslation} from 'react-i18next';
 
 import React from 'react';
@@ -15,6 +16,11 @@ export const SkillScreen = ({}: IProps) => {
     <TouchableOpacity onPress={_handleChangeLangues}>
       <Text>SkillScreen</Text>
       <Text>{t('Skill')}</Text>
+      <LottieImage
+        loop
+        autoPlay
+        source={require('../../../components/lottie/assets/image/196-material-wave-loading.json')}
+      />
     </TouchableOpacity>
   );
 };

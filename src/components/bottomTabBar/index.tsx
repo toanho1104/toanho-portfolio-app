@@ -1,4 +1,5 @@
 import Icon from '@components/icon';
+import {LottieImage} from '@components/lottie';
 import {
   BottomTabDescriptorMap,
   BottomTabNavigationEventMap,
@@ -33,83 +34,123 @@ export const CustomTabBar = ({
   const BOTTOM_TAB_BAR_DATA: TBottomStackParamList = useMemo(() => {
     return {
       Contact: {
+        key: 1,
         name: t('de'),
-        true: <Icon name="contract" size={24} fill="#4705b9" />,
-        false: <Icon name="contract" size={24} fill="black" />,
+        // true: <Icon name="contract" size={24} fill="#4705b9" />,
+        icons: 'skill',
+        iconJson: require('../../components/lottie/assets/image/132375-hypercube.json'),
+        true: (
+          <LottieImage
+            autoPlay={true}
+            loop={true}
+            source={require('../../components/lottie/assets/image/132375-hypercube.json')}
+          />
+        ),
+        false: (
+          <LottieImage
+            autoPlay={false}
+            loop={false}
+            source={require('../../components/lottie/assets/image/132375-hypercube.json')}
+          />
+        ),
       },
       Skill: {
+        key: 2,
         name: t('Skill'),
-        true: <Icon name="skill" size={24} fill="#4705b9" />,
-        false: <Icon name="skill" size={24} fill="black" />,
+        icons: 'skill',
+        iconJson: require('../../components/lottie/assets/image/196-material-wave-loading.json'),
+        true: (
+          <LottieImage
+            autoPlay={true}
+            loop={true}
+            source={require('../../components/lottie/assets/image/196-material-wave-loading.json')}
+          />
+        ),
+        false: (
+          <LottieImage
+            autoPlay={false}
+            loop={false}
+            source={require('../../components/lottie/assets/image/196-material-wave-loading.json')}
+          />
+        ),
       },
     };
   }, [t]);
 
   return (
-    <>
-      <View style={styles.container}>
-        {state.routes.map((route, index) => {
-          const {options} = descriptors[route.key];
-          const label =
-            options.tabBarLabel !== undefined
-              ? options.tabBarLabel
-              : options.title !== undefined
-              ? options.title
-              : route.name;
+    <View style={styles.container}>
+      {state.routes.map((route, index) => {
+        const {options} = descriptors[route.key];
+        const label =
+          options.tabBarLabel !== undefined
+            ? options.tabBarLabel
+            : options.title !== undefined
+            ? options.title
+            : route.name;
 
-          const isFocused = state.index === index;
-          const onPress = () => {
-            const event = navigation.emit({
-              type: 'tabPress',
-              target: route.key,
-              canPreventDefault: true,
-            });
+        const isFocused = state.index === index;
+        console.log('index', isFocused);
 
-            if (!isFocused && !event.defaultPrevented) {
-              // The `merge: true` option makes sure that the params inside the tab screen are preserved
-              navigation.navigate({name: route.name, merge: true});
-            }
-          };
+        const onPress = () => {
+          const event = navigation.emit({
+            type: 'tabPress',
+            target: route.key,
+            canPreventDefault: true,
+          });
 
-          const onLongPress = () => {
-            navigation.emit({
-              type: 'tabLongPress',
-              target: route.key,
-            });
-          };
+          if (!isFocused && !event.defaultPrevented) {
+            // The `merge: true` option makes sure that the params inside the tab screen are preserved
+            navigation.navigate({name: route.name, merge: true});
+          }
+        };
 
-          return (
-            <Fragment key={index}>
-              <TouchableOpacity
-                accessibilityRole="button"
-                accessibilityState={isFocused ? {selected: true} : {}}
-                accessibilityLabel={options.tabBarAccessibilityLabel}
-                testID={options.tabBarTestID}
-                onPress={onPress}
-                onLongPress={onLongPress}
-                style={styles.innerItem}>
-                {
+        const onLongPress = () => {
+          navigation.emit({
+            type: 'tabLongPress',
+            target: route.key,
+          });
+        };
+
+        console.log('re render');
+
+        return (
+          <Fragment key={route.key}>
+            <TouchableOpacity
+              accessibilityRole="button"
+              accessibilityState={isFocused ? {selected: true} : {}}
+              accessibilityLabel={options.tabBarAccessibilityLabel}
+              testID={options.tabBarTestID}
+              onPress={onPress}
+              onLongPress={onLongPress}
+              style={styles.innerItem}>
+              {/* {
                   BOTTOM_TAB_BAR_DATA[label as keyof TBottomStackParamList][
                     isFocused as any
                   ]
+                } */}
+              {/* <Icon name="skill" /> */}
+              <LottieImage
+                source={
+                  BOTTOM_TAB_BAR_DATA[label as keyof TBottomStackParamList]
+                    .iconJson
                 }
-
-                {isFocused && (
-                  <Text
-                    style={StyleSheet.flatten([
-                      styles.label,
-                      isFocused && styles.focused,
-                    ])}>
-                    {BOTTOM_TAB_BAR_DATA[label].name}
-                  </Text>
-                )}
-              </TouchableOpacity>
-            </Fragment>
-          );
-        })}
-      </View>
-      {/* <SafeAreaView /> */}
-    </>
+                autoPlay={isFocused}
+                loop={false}
+              />
+              {isFocused && (
+                <Text
+                  style={StyleSheet.flatten([
+                    styles.label,
+                    isFocused && styles.focused,
+                  ])}>
+                  {BOTTOM_TAB_BAR_DATA[label as string].name}
+                </Text>
+              )}
+            </TouchableOpacity>
+          </Fragment>
+        );
+      })}
+    </View>
   );
 };
 

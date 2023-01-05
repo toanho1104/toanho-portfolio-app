@@ -5,8 +5,6 @@ import React from 'react';
 
 import {BottomStack} from './BottomTab';
 
-// import {ThemeContextProvider} from '@contexts/themeContext';
-
 export default function Navigation() {
   const {ThemeContextProvider} = useTheme();
 
