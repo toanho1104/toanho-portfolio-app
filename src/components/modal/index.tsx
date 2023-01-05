@@ -1,25 +1,27 @@
+import Animated, {
+  interpolate,
+  interpolateColor,
+  runOnJS,
+  useAnimatedStyle,
+  useSharedValue,
+  withSpring,
+  withTiming,
+} from 'react-native-reanimated';
+
 import React, {
   forwardRef,
   useCallback,
   useImperativeHandle,
   useState,
 } from 'react';
+
 import {
-  Text,
-  View,
   Modal,
   StyleSheet,
+  Text,
   TouchableWithoutFeedback,
+  View,
 } from 'react-native';
-import Animated, {
-  useSharedValue,
-  useAnimatedStyle,
-  interpolateColor,
-  withTiming,
-  runOnJS,
-  interpolate,
-  withSpring,
-} from 'react-native-reanimated';
 
 interface IProps {
   children?: React.ReactNode;

@@ -1,11 +1,11 @@
-import React from 'react';
-import {ContactScreen} from '../ContactStack/screens/ContactScreen';
-
-import {SkillScreen} from '../SkillsStack/screens/SkillScreen';
-
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {CustomTabBar} from '@components/bottomTabBar';
-import {TBottomStackParamList} from '@types/stacksType';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+
+import React from 'react';
+
+import {TBottomStackParamList} from '../../types/navigationType';
+import {ContactScreen} from '../ContactStack/screens/ContactScreen';
+import {SkillScreen} from '../SkillsStack/screens/SkillScreen';
 
 const Tab = createBottomTabNavigator<TBottomStackParamList>();
 

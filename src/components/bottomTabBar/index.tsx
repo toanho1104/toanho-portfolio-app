@@ -8,12 +8,15 @@ import {
   ParamListBase,
   TabNavigationState,
 } from '@react-navigation/native';
-import {TBottomStackParamList} from '@types/stacksType';
 import {isIosPlatform} from '@utils/checks';
 import {widthScale} from '@utils/dimensions';
-import React, {Fragment, useCallback, useMemo} from 'react';
 import {useTranslation} from 'react-i18next';
+
+import React, {Fragment, useMemo} from 'react';
+
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+
+import {TBottomStackParamList} from '../../types/navigationType';
 
 export type BottomTabBarProps = {
   state: TabNavigationState<ParamListBase>;

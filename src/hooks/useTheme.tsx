@@ -1,11 +1,12 @@
 import {
-  createContext,
   Dispatch,
   SetStateAction,
+  createContext,
   useContext,
   useState,
 } from 'react';
 import React from 'react';
+
 const ThemeContext = createContext<IThemeContext>({} as IThemeContext);
 
 interface IThemProvider {

@@ -1,6 +1,7 @@
-import React from 'react';
 // import {Image} from 'react-native';
-import {Svg, Path, Circle, Rect, Defs} from 'react-native-svg';
+import {Path, Svg} from 'react-native-svg';
+
+import React from 'react';
 
 export default {
   contract: {

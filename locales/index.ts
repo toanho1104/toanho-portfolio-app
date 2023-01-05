@@ -1,9 +1,9 @@
 import i18next from 'i18next';
 import {initReactI18next} from 'react-i18next';
 
-import translationVn from './vn/demoVn.json';
 import translationEn from './en/demoEn.json';
 import skillEn from './en/skill.json';
+import translationVn from './vn/demoVn.json';
 import skillVn from './vn/skill.json';
 
 export const resources = {

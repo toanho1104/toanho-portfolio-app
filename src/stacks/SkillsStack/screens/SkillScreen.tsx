@@ -1,6 +1,9 @@
-import React from 'react';
 import {useTranslation} from 'react-i18next';
-import {Text, TouchableOpacity, View} from 'react-native';
+
+import React from 'react';
+
+import {Text, TouchableOpacity} from 'react-native';
+
 interface IProps {}
 export const SkillScreen = ({}: IProps) => {
   const {t, i18n} = useTranslation(['skill']);

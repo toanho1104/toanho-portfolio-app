@@ -1,5 +1,6 @@
-import React from 'react';
 import SvgIcon from 'react-native-svg-icon';
+
+import React from 'react';
 
 import svgs from '@assets/svgs';
 
