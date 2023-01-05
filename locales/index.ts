@@ -1,20 +1,20 @@
 import i18next from 'i18next';
 import {initReactI18next} from 'react-i18next';
 
-import translationEn from './en/demoEn.json';
+import contactEn from './en/contact.json';
 import skillEn from './en/skill.json';
-import translationVn from './vn/demoVn.json';
+import contactVn from './vn/contact.json';
 import skillVn from './vn/skill.json';
 
 export const resources = {
   en: {
-    translation: translationEn,
     skill: skillEn,
+    contact: contactEn,
   },
-  vn: {translation: translationVn, skill: skillVn},
+  vn: {skill: skillVn, contact: contactVn},
 };
 
 i18next
   .use(initReactI18next)
-  .init({resources, lng: 'en', compatibilityJSON: 'v3'});
+  .init({resources, lng: 'en', compatibilityJSON: 'v3', keySeparator: false});
 export default i18next;

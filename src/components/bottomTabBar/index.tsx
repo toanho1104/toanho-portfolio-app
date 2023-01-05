@@ -1,3 +1,4 @@
+// import Icon from '@components/icon';
 import Icon from '@components/icon';
 import {LottieImage} from '@components/lottie';
 import {
@@ -30,49 +31,18 @@ export const CustomTabBar = ({
   descriptors,
   navigation,
 }: BottomTabBarProps) => {
-  const {t} = useTranslation(['skill']);
+  const {t} = useTranslation();
   const BOTTOM_TAB_BAR_DATA: TBottomStackParamList = useMemo(() => {
     return {
       Contact: {
         key: 1,
-        name: t('de'),
-        // true: <Icon name="contract" size={24} fill="#4705b9" />,
+        name: t('Contact', {ns: ['contact']}),
         icons: 'skill',
-        iconJson: require('../../components/lottie/assets/image/132375-hypercube.json'),
-        true: (
-          <LottieImage
-            autoPlay={true}
-            loop={true}
-            source={require('../../components/lottie/assets/image/132375-hypercube.json')}
-          />
-        ),
-        false: (
-          <LottieImage
-            autoPlay={false}
-            loop={false}
-            source={require('../../components/lottie/assets/image/132375-hypercube.json')}
-          />
-        ),
       },
       Skill: {
         key: 2,
-        name: t('Skill'),
+        name: t('Skill', {ns: 'skill'}),
         icons: 'skill',
-        iconJson: require('../../components/lottie/assets/image/196-material-wave-loading.json'),
-        true: (
-          <LottieImage
-            autoPlay={true}
-            loop={true}
-            source={require('../../components/lottie/assets/image/196-material-wave-loading.json')}
-          />
-        ),
-        false: (
-          <LottieImage
-            autoPlay={false}
-            loop={false}
-            source={require('../../components/lottie/assets/image/196-material-wave-loading.json')}
-          />
-        ),
       },
     };
   }, [t]);
@@ -89,7 +59,6 @@ export const CustomTabBar = ({
             : route.name;
 
         const isFocused = state.index === index;
-        console.log('index', isFocused);
 
         const onPress = () => {
           const event = navigation.emit({
@@ -128,22 +97,25 @@ export const CustomTabBar = ({
                     isFocused as any
                   ]
                 } */}
-              {/* <Icon name="skill" /> */}
-              <LottieImage
-                source={
+              <Icon
+                name={
                   BOTTOM_TAB_BAR_DATA[label as keyof TBottomStackParamList]
-                    .iconJson
+                    .icons
                 }
-                autoPlay={isFocused}
-                loop={false}
+                fill={isFocused ? '#673ab7' : '#000000'}
+                size={24}
               />
+
               {isFocused && (
                 <Text
                   style={StyleSheet.flatten([
                     styles.label,
                     isFocused && styles.focused,
                   ])}>
-                  {BOTTOM_TAB_BAR_DATA[label as string].name}
+                  {
+                    BOTTOM_TAB_BAR_DATA[label as keyof TBottomStackParamList]
+                      .name
+                  }
                 </Text>
               )}
             </TouchableOpacity>
@@ -171,5 +143,9 @@ const styles = StyleSheet.create({
   },
   focused: {
     color: '#673ab7',
+  },
+  icon: {
+    width: 24,
+    height: 24,
   },
 });

@@ -7,7 +7,7 @@ import {Text, TouchableOpacity} from 'react-native';
 
 interface IProps {}
 export const SkillScreen = ({}: IProps) => {
-  const {t, i18n} = useTranslation(['skill']);
+  const {t, i18n} = useTranslation();
   console.log({t});
   const _handleChangeLangues = () => {
     i18n.changeLanguage('vn');
@@ -15,7 +15,9 @@ export const SkillScreen = ({}: IProps) => {
   return (
     <TouchableOpacity onPress={_handleChangeLangues}>
       <Text>SkillScreen</Text>
-      <Text>{t('Skill')}</Text>
+      <Text>{t('Skill', {ns: ['skill']})}</Text>
+      <Text>{t('Contact', {ns: ['contact']})}</Text>
+
       <LottieImage
         loop
         autoPlay
