@@ -1,6 +1,5 @@
 // import Icon from '@components/icon';
 import Icon from '@components/icon';
-import {LottieImage} from '@components/lottie';
 import {
   BottomTabDescriptorMap,
   BottomTabNavigationEventMap,
@@ -90,11 +89,6 @@ export const CustomTabBar = ({
               onPress={onPress}
               onLongPress={onLongPress}
               style={styles.innerItem}>
-              {/* {
-                  BOTTOM_TAB_BAR_DATA[label as keyof TBottomStackParamList][
-                    isFocused as any
-                  ]
-                } */}
               <Icon
                 name={
                   BOTTOM_TAB_BAR_DATA[label as keyof TBottomStackParamList]

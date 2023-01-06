@@ -11,7 +11,9 @@ const Tab = createBottomTabNavigator<TBottomStackParamList>();
 
 export const BottomStack = () => {
   return (
-    <Tab.Navigator tabBar={props => <CustomTabBar {...props} />}>
+    <Tab.Navigator
+      tabBar={props => <CustomTabBar {...props} />}
+      screenOptions={{headerShown: false}}>
       <Tab.Screen name="Contact" component={ContactScreen} />
       <Tab.Screen name="Skill" component={SkillScreen} />
     </Tab.Navigator>

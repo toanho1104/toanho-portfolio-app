@@ -60,10 +60,12 @@ type IThemeContext = {
 const LightTheme: TColor = {
   PRIMARY: '#000000',
   PRIMARY_DARK: '#111111',
+  BACKGROUND_PRIMARY: '#f7f5f5',
 };
 const DarkTheme: TColor = {
   PRIMARY: '#9847',
   PRIMARY_DARK: '#111111',
+  BACKGROUND_PRIMARY: '#242222',
 };
 
 export const useTheme = () => {
