@@ -1,0 +1,10 @@
+{
+    "button":{
+        "0k":"Đồng ý",
+        "cancel":"Huỷ Bỏ"
+    },
+    "stack":{
+        "contact":"Liên Hệ",
+        "skill": "Kỹ năng"
+    }
+}

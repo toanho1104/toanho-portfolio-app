@@ -1,0 +1,10 @@
+{
+    "button":{
+        "0k":"ok",
+        "cancel":"Cancel"
+    },
+    "stack":{
+        "contact":"Contact",
+        "skill": "Skill"
+    }
+}

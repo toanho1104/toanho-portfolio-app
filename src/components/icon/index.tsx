@@ -2,32 +2,31 @@ import SvgIcon from 'react-native-svg-icon';
 
 import React from 'react';
 
+import {TouchableOpacity} from 'react-native';
+
 import svgs from '@assets/svgs';
 
 export type TIconName = keyof typeof svgs;
-type TypeBase = {
-  [key: string]: string | object | number;
-};
-type TIconProps = TypeBase & {
+
+interface TIconProps {
   size?: number;
   fill?: string;
   name: TIconName;
-};
+  onPress?: () => void;
+}
 
-const Icon = (props: TIconProps) => {
-  if (props.size) {
-    return (
+const Icon = ({size, fill, name, onPress}: TIconProps) => {
+  return (
+    <TouchableOpacity onPress={onPress} disabled={!onPress}>
       <SvgIcon
-        {...props}
-        fill={props.fill || 'white'}
+        fill={fill || 'white'}
         svgs={svgs}
-        width={props.size}
-        height={props.size}
+        width={size}
+        height={size}
+        name={name}
       />
-    );
-  }
-
-  return <SvgIcon {...props} svgs={svgs} />;
+    </TouchableOpacity>
+  );
 };
 
 export default Icon;

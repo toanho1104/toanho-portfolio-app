@@ -35,13 +35,13 @@ export const CustomTabBar = ({
   const BOTTOM_TAB_BAR_DATA: TBottomStackParamList = useMemo(() => {
     return {
       Contact: {
-        key: 1,
-        name: t('Contact', {ns: ['contact']}),
-        icons: 'skill',
+        key: 0,
+        name: t('stack.contact'),
+        icons: 'contact',
       },
       Skill: {
-        key: 2,
-        name: t('Skill', {ns: 'skill'}),
+        key: 1,
+        name: t('stack.skill'),
         icons: 'skill',
       },
     };
@@ -80,8 +80,6 @@ export const CustomTabBar = ({
           });
         };
 
-        console.log('re render');
-
         return (
           <Fragment key={route.key}>
             <TouchableOpacity
@@ -103,7 +101,7 @@ export const CustomTabBar = ({
                     .icons
                 }
                 fill={isFocused ? '#673ab7' : '#000000'}
-                size={24}
+                size={widthScale(30)}
               />
 
               {isFocused && (
@@ -145,7 +143,7 @@ const styles = StyleSheet.create({
     color: '#673ab7',
   },
   icon: {
-    width: 24,
-    height: 24,
+    width: widthScale(30),
+    height: widthScale(30),
   },
 });
