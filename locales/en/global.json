@@ -5,6 +5,7 @@
     },
     "stack":{
         "contact":"Contact",
-        "skill": "Skill"
+        "skill": "Skill",
+        "aboutMe":"About Me"
     }
 }

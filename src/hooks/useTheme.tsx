@@ -44,7 +44,7 @@ type TColor = {
   TEXT_ON_SUCCESS?: string;
 
   BACKGROUND_PRIMARY?: string;
-  BACKGROUND_SECONDERS?: string;
+  BACKGROUND_SECONDARY?: string;
   BACKGROUND_BOTTOM_TAB_BAR?: string;
 
   CARD_PRIMARY?: string;
@@ -58,16 +58,19 @@ type IThemeContext = {
 };
 
 const LightTheme: TColor = {
-  PRIMARY: '#000000',
+  PRIMARY: '#052df5',
   PRIMARY_DARK: '#111111',
   BACKGROUND_PRIMARY: '#f7f5f5',
+  BACKGROUND_SECONDARY: '#ffff',
   TEXT_DARK: '#020a07',
 };
 const DarkTheme: TColor = {
-  PRIMARY: '#9847',
+  PRIMARY: '#7c91fc',
   PRIMARY_DARK: '#111111',
   BACKGROUND_PRIMARY: '#111111',
-  TEXT_DARK: '#dce6e2',
+  BACKGROUND_SECONDARY: '#363837',
+
+  TEXT_DARK: '#ffff',
 };
 
 export const useTheme = () => {

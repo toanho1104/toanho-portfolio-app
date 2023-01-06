@@ -20,7 +20,7 @@ interface IProps {
   type?: 'h1' | 'h2' | 'h3' | 'title' | 'subtitle' | 'body' | 'caption';
 }
 
-export const TextCustom = ({
+export const MyText = ({
   children = 'No caption',
   color = 'black',
   type = 'caption',

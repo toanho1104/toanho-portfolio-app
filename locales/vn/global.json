@@ -1,10 +1,12 @@
 {
     "button":{
         "0k":"Đồng ý",
-        "cancel":"Huỷ Bỏ"
+        "cancel":"Huỷ bỏ"
     },
     "stack":{
-        "contact":"Liên Hệ",
-        "skill": "Kỹ năng"
+        "contact":"Liên hệ",
+        "skill": "Kỹ năng",
+        "aboutMe":"Vê tôi"
+
     }
 }

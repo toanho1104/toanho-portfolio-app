@@ -33,7 +33,7 @@ export interface IHandle {
   handleHideModal: () => void;
 }
 
-export const ModalCustom = forwardRef<IHandle, IProps>((props, ref) => {
+export const MyModal = forwardRef<IHandle, IProps>((props, ref) => {
   const [isVisible, setIsVisible] = useState<boolean>(false);
 
   const _handleToggleShow = useCallback(() => {

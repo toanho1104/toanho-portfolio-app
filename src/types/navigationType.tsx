@@ -6,6 +6,7 @@ import {BottomTabScreenProps} from '@react-navigation/bottom-tabs';
 export type TBottomStackParamList = {
   Contact: undefined | JSX.Element | any;
   Skill: undefined | JSX.Element | any;
+  AboutMe: undefined | JSX.Element | any;
 };
 
 export type TRootStack = BottomTabScreenProps<TBottomStackParamList>;

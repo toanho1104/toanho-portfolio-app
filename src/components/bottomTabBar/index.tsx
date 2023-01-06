@@ -1,5 +1,7 @@
 // import Icon from '@components/icon';
 import Icon from '@components/icon';
+import {MyText} from '@components/text';
+import {useTheme} from '@hooks/useTheme';
 import {
   BottomTabDescriptorMap,
   BottomTabNavigationEventMap,
@@ -31,8 +33,15 @@ export const CustomTabBar = ({
   navigation,
 }: BottomTabBarProps) => {
   const {t} = useTranslation();
+
+  const {colors} = useTheme();
   const BOTTOM_TAB_BAR_DATA: TBottomStackParamList = useMemo(() => {
     return {
+      AboutMe: {
+        key: 2,
+        name: t('stack.aboutMe'),
+        icons: 'aboutMe',
+      },
       Contact: {
         key: 0,
         name: t('stack.contact'),
@@ -47,7 +56,11 @@ export const CustomTabBar = ({
   }, [t]);
 
   return (
-    <View style={styles.container}>
+    <View
+      style={[
+        styles.container,
+        {backgroundColor: colors.BACKGROUND_SECONDARY},
+      ]}>
       {state.routes.map((route, index) => {
         const {options} = descriptors[route.key];
         const label =
@@ -94,21 +107,20 @@ export const CustomTabBar = ({
                   BOTTOM_TAB_BAR_DATA[label as keyof TBottomStackParamList]
                     .icons
                 }
-                fill={isFocused ? '#673ab7' : '#000000'}
+                fill={isFocused ? colors.PRIMARY : colors.TEXT_DARK}
                 size={widthScale(30)}
               />
-
+              <View style={{height: 6}}></View>
               {isFocused && (
-                <Text
-                  style={StyleSheet.flatten([
-                    styles.label,
-                    isFocused && styles.focused,
-                  ])}>
+                <MyText
+                  font="bold"
+                  type="title"
+                  color={isFocused ? colors.PRIMARY : colors.TEXT_DARK}>
                   {
                     BOTTOM_TAB_BAR_DATA[label as keyof TBottomStackParamList]
                       .name
                   }
-                </Text>
+                </MyText>
               )}
             </TouchableOpacity>
           </Fragment>
@@ -121,9 +133,9 @@ export const CustomTabBar = ({
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
-    height: widthScale(62),
+    height: isIosPlatform() ? widthScale(92) : widthScale(62),
     backgroundColor: 'white',
-    marginBottom: isIosPlatform() ? widthScale(20) : 0,
+    paddingBottom: isIosPlatform() ? widthScale(10) : 0,
   },
   innerItem: {
     flex: 1,
