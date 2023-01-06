@@ -61,11 +61,13 @@ const LightTheme: TColor = {
   PRIMARY: '#000000',
   PRIMARY_DARK: '#111111',
   BACKGROUND_PRIMARY: '#f7f5f5',
+  TEXT_DARK: '#020a07',
 };
 const DarkTheme: TColor = {
   PRIMARY: '#9847',
   PRIMARY_DARK: '#111111',
-  BACKGROUND_PRIMARY: '#242222',
+  BACKGROUND_PRIMARY: '#111111',
+  TEXT_DARK: '#dce6e2',
 };
 
 export const useTheme = () => {

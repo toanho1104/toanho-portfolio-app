@@ -1,4 +1,5 @@
 import {DefaultLayout} from '@components/layout/defaultLayout';
+import {TextCustom} from '@components/text';
 import {useTheme} from '@hooks/useTheme';
 import {useTranslation} from 'react-i18next';
 
@@ -25,6 +26,9 @@ export const ContactScreen = ({}: IProps) => {
         <Text style={{color: colors.PRIMARY}}>ContactScreen</Text>
       </TouchableNativeFeedback>
       <Text style={{color: colors.PRIMARY}}>{t('Contact')}</Text>
+      <TextCustom font="bold" type="h1" color={colors.TEXT_DARK}>
+        super text component
+      </TextCustom>
     </DefaultLayout>
   );
 };
