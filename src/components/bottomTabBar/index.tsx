@@ -133,9 +133,9 @@ export const CustomTabBar = ({
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
-    height: isIosPlatform() ? widthScale(92) : widthScale(62),
+    height: isIosPlatform ? widthScale(92) : widthScale(62),
     backgroundColor: 'white',
-    paddingBottom: isIosPlatform() ? widthScale(10) : 0,
+    paddingBottom: isIosPlatform ? widthScale(10) : 0,
   },
   innerItem: {
     flex: 1,

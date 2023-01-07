@@ -1,15 +1,15 @@
 import {useTheme} from '@hooks/useTheme';
-import Animated from 'react-native-reanimated';
 
-import React, {useCallback, useMemo} from 'react';
+import React, {useMemo} from 'react';
 
 import {SafeAreaView, StatusBar, StyleSheet, View} from 'react-native';
 
 interface IProps {
   children: React.ReactNode;
+  noneSafeView?: boolean;
 }
 
-export const DefaultLayout = ({children}: IProps) => {
+export const DefaultLayout = ({children, noneSafeView = false}: IProps) => {
   const {colors, themeMode} = useTheme();
 
   const checkBarStyle = useMemo(() => {
@@ -26,7 +26,7 @@ export const DefaultLayout = ({children}: IProps) => {
         barStyle={checkBarStyle}
       />
 
-      <SafeAreaView />
+      {!noneSafeView && <SafeAreaView />}
       {children}
     </View>
   );
