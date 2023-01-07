@@ -12,9 +12,15 @@ interface IProps {
 export const DefaultLayout = ({children, noneSafeView = false}: IProps) => {
   const {colors, themeMode} = useTheme();
 
+  //style components
+  const backGroundColorStatusBarStyle = useMemo(() => {
+    return noneSafeView ? 'transparent' : colors.BACKGROUND_PRIMARY;
+  }, [colors.BACKGROUND_PRIMARY, noneSafeView]);
+
   const checkBarStyle = useMemo(() => {
     return themeMode === 'dark' ? 'light-content' : 'dark-content';
   }, [themeMode]);
+
   return (
     <View
       style={StyleSheet.flatten([
@@ -22,8 +28,9 @@ export const DefaultLayout = ({children, noneSafeView = false}: IProps) => {
         {backgroundColor: colors.BACKGROUND_PRIMARY},
       ])}>
       <StatusBar
-        backgroundColor={colors.BACKGROUND_PRIMARY}
+        backgroundColor={backGroundColorStatusBarStyle}
         barStyle={checkBarStyle}
+        translucent
       />
 
       {!noneSafeView && <SafeAreaView />}

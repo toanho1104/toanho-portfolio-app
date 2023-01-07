@@ -26,23 +26,24 @@ const ListViewIntroduce = ({onScroll, data, value}: IProps) => {
   const color = useAnimatedStyle(() => {
     const backgroundColor = interpolateColor(
       value.value,
-      [0, SCREEN_WIDTH],
-      ['red', 'blue'],
+      [0, SCREEN_WIDTH, SCREEN_WIDTH * 2],
+      ['red', 'blue', 'red'],
     );
     return {backgroundColor: backgroundColor};
   }, []);
 
   return (
     <Animated.View style={[styles.container, color]}>
-      <FlatList
+      <Animated.FlatList
         onScroll={onScroll}
         horizontal
         data={data}
         keyExtractor={e => `${e.id}`}
         renderItem={renderItem}
         snapToInterval={SCREEN_WIDTH}
-        decelerationRate="fast"
-        snapToAlignment="start"
+        decelerationRate="normal"
+        snapToAlignment="center"
+        // scrollEventThrottle={16}
       />
     </Animated.View>
   );
