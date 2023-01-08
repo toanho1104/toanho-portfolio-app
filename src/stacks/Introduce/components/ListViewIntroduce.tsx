@@ -44,7 +44,7 @@ const ListViewIntroduce = ({onScroll, data, value}: IProps) => {
         snapToInterval={SCREEN_WIDTH}
         decelerationRate="fast"
         snapToAlignment="center"
-        scrollEventThrottle={16}
+        // scrollEventThrottle={16}
       />
     </Animated.View>
   );

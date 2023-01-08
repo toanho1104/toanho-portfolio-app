@@ -4,7 +4,7 @@ import Animated, {
   useAnimatedStyle,
 } from 'react-native-reanimated';
 
-import React from 'react';
+import React, {useMemo} from 'react';
 
 import {Dimensions, StyleSheet, View} from 'react-native';
 
@@ -18,28 +18,50 @@ interface IProps {
 export const PaginationDot = ({data = [], scrollOffset}: IProps) => {
   return (
     <View style={styles.container}>
-      {data.map((_, index) => {
-        // eslint-disable-next-line react-hooks/rules-of-hooks
-        const inputRange = [
-          (index - 1) * SCREEN_WIDTH,
-          index * SCREEN_WIDTH,
-          (index + 1) * SCREEN_WIDTH,
-        ];
-
-        const widthStyle = useAnimatedStyle(() => {
-          const width = interpolate(
-            scrollOffset.value,
-            inputRange,
-            [10, 20, 10],
-            Extrapolate.CLAMP,
-          );
-
-          return {width: width};
-        }, []);
-        return <Animated.View style={[styles.dot, widthStyle]} />;
-      })}
+      {data.map((_, index) => (
+        <PaginationDotItem
+          index={index}
+          scrollOffset={scrollOffset}
+          key={index}
+        />
+      ))}
     </View>
   );
+};
+
+const PaginationDotItem = ({
+  index,
+  scrollOffset,
+}: {
+  index: number;
+  scrollOffset: any;
+}) => {
+  const inputRange = useMemo(
+    () => [
+      (index - 1) * SCREEN_WIDTH,
+      index * SCREEN_WIDTH,
+      (index + 1) * SCREEN_WIDTH,
+    ],
+    [index],
+  );
+  const widthStyle = useAnimatedStyle(() => {
+    const width = interpolate(
+      scrollOffset.value,
+      inputRange,
+      [10, 20, 10],
+      Extrapolate.CLAMP,
+    );
+    const opacity = interpolate(
+      scrollOffset.value,
+      inputRange,
+      [0.5, 10, 0.5],
+      Extrapolate.CLAMP,
+    );
+
+    return {width, opacity};
+  }, []);
+
+  return <Animated.View style={[styles.dot, widthStyle]} />;
 };
 
 const styles = StyleSheet.create({
@@ -49,11 +71,9 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   dot: {
-    width: 10,
     height: 10,
     borderRadius: 5,
     marginHorizontal: 5,
     backgroundColor: 'black',
-    borderWidth: 1,
   },
 });

@@ -3,14 +3,11 @@ import {PaginationDot} from '@components/paginationDot';
 import {
   useAnimatedScrollHandler,
   useSharedValue,
-  withDecay,
-  withSpring,
-  withTiming,
 } from 'react-native-reanimated';
 
-import React, {useCallback, useState} from 'react';
+import React, {useState} from 'react';
 
-import {Dimensions, NativeScrollEvent, SafeAreaView} from 'react-native';
+import {Dimensions} from 'react-native';
 
 import {ContentViewItem} from '../components/ContentViewItem';
 import ListViewIntroduce from '../components/ListViewIntroduce';
@@ -23,16 +20,6 @@ export const IntroduceScreen = ({}: IProps) => {
   const [currentContent, setCurrentContent] = useState(DATA[1].content);
 
   const scrollX = useSharedValue(0);
-
-  const _onScroll = useCallback(
-    ({nativeEvent}: {nativeEvent: NativeScrollEvent}) => {
-      let currentIndex = Math.round(nativeEvent.contentOffset.x / SCREEN_WIDTH);
-      setCurrentContent(DATA[currentIndex].content);
-
-      scrollX.value = nativeEvent.contentOffset.x;
-    },
-    [scrollX],
-  );
 
   const _scrollHandler = useAnimatedScrollHandler({
     onScroll: event => {
