@@ -6,7 +6,7 @@ import React from 'react';
 
 import {Dimensions, StyleSheet, View} from 'react-native';
 
-const {width: SCREEN_WIDTH} = Dimensions.get('window');
+const {width: SCREEN_WIDTH, height: SCREEN_HEIGHT} = Dimensions.get('window');
 
 interface IProps {
   item: any;
@@ -27,12 +27,12 @@ const styles = StyleSheet.create({
     width: SCREEN_WIDTH,
     justifyContent: 'center',
     alignItems: 'center',
+    height: SCREEN_HEIGHT,
   },
   image: {
     width: widthScale(160),
     height: widthScale(160),
     borderRadius: 200,
-
     borderWidth: 2,
     borderColor: 'white',
     marginBottom: heightScale(300),

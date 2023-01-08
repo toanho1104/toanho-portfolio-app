@@ -39,11 +39,12 @@ const ListViewIntroduce = ({onScroll, data, value}: IProps) => {
         horizontal
         data={data}
         keyExtractor={e => `${e.id}`}
+        showsHorizontalScrollIndicator={false}
         renderItem={renderItem}
         snapToInterval={SCREEN_WIDTH}
-        decelerationRate="normal"
+        decelerationRate="fast"
         snapToAlignment="center"
-        // scrollEventThrottle={16}
+        scrollEventThrottle={16}
       />
     </Animated.View>
   );
