@@ -1,5 +1,6 @@
 import {DefaultLayout} from '@components/layout/defaultLayout';
 import {PaginationDot} from '@components/paginationDot';
+import {heightScale} from '@utils/dimensions';
 import {
   useAnimatedScrollHandler,
   useSharedValue,
@@ -7,18 +8,17 @@ import {
 
 import React, {useState} from 'react';
 
-import {Dimensions} from 'react-native';
+import {Dimensions, StyleSheet} from 'react-native';
 
 import {ContentViewItem} from '../components/ContentViewItem';
 import ListViewIntroduce from '../components/ListViewIntroduce';
+import {NextButton} from '../components/NextButton';
 
 const {width: SCREEN_WIDTH} = Dimensions.get('window');
 
 interface IProps {}
 
 export const IntroduceScreen = ({}: IProps) => {
-  const [currentContent, setCurrentContent] = useState(DATA[1].content);
-
   const scrollX = useSharedValue(0);
 
   const _scrollHandler = useAnimatedScrollHandler({
@@ -33,13 +33,26 @@ export const IntroduceScreen = ({}: IProps) => {
         data={DATA}
         onScroll={_scrollHandler}
         value={scrollX}
+        scrollOffset={scrollX}
       />
 
-      <ContentViewItem offset={scrollX} content={currentContent} />
-      <PaginationDot data={DATA} scrollOffset={scrollX} />
+      <ContentViewItem scrollOffset={scrollX} data={DATA} />
+      <PaginationDot
+        data={DATA}
+        scrollOffset={scrollX}
+        style={styles.dotStyle}
+      />
+      <NextButton scrollOffset={scrollX} />
     </DefaultLayout>
   );
 };
+
+const styles = StyleSheet.create({
+  dotStyle: {
+    alignSelf: 'center',
+    bottom: heightScale(260),
+  },
+});
 
 const DATA = [
   {

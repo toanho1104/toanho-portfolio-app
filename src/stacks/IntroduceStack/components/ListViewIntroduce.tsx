@@ -1,12 +1,12 @@
-import {MyText} from '@components/text';
 import Animated, {
+  SharedValue,
   interpolateColor,
   useAnimatedStyle,
 } from 'react-native-reanimated';
 
 import React, {useCallback} from 'react';
 
-import {Dimensions, FlatList, StyleSheet, Text, View} from 'react-native';
+import {Dimensions, StyleSheet} from 'react-native';
 
 import {IntroduceItem} from './IntroduceItem';
 
@@ -16,18 +16,24 @@ interface IProps {
   onScroll: any;
   data: any;
   value: any;
+  scrollOffset: SharedValue<number>;
 }
 
-const ListViewIntroduce = ({onScroll, data, value}: IProps) => {
-  const renderItem = useCallback((item: any) => {
-    return <IntroduceItem item={item} />;
-  }, []);
+const ListViewIntroduce = ({onScroll, data, value, scrollOffset}: IProps) => {
+  const renderItem = useCallback(
+    ({item, index}: {item: any; index: number}) => {
+      return (
+        <IntroduceItem item={item} scrollOffset={scrollOffset} index={index} />
+      );
+    },
+    [scrollOffset],
+  );
 
   const color = useAnimatedStyle(() => {
     const backgroundColor = interpolateColor(
       value.value,
       [0, SCREEN_WIDTH, SCREEN_WIDTH * 2],
-      ['red', 'blue', 'red'],
+      ['red', 'blue', 'white'],
     );
     return {backgroundColor: backgroundColor};
   }, []);
@@ -44,12 +50,12 @@ const ListViewIntroduce = ({onScroll, data, value}: IProps) => {
         snapToInterval={SCREEN_WIDTH}
         decelerationRate="fast"
         snapToAlignment="center"
-        // scrollEventThrottle={16}
+        scrollEventThrottle={16}
       />
     </Animated.View>
   );
 };
-export default React.memo(ListViewIntroduce);
+export default ListViewIntroduce;
 
 const styles = StyleSheet.create({
   container: {flex: 1},

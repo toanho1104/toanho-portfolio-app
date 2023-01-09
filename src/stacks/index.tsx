@@ -8,7 +8,7 @@ import React from 'react';
 import {SafeAreaView, StatusBar, StyleSheet, View} from 'react-native';
 
 import {BottomStack} from './BottomTab';
-import {IntroduceStack} from './Introduce';
+import {IntroduceStack} from './IntroduceStack';
 
 const Stack = createStackNavigator();
 

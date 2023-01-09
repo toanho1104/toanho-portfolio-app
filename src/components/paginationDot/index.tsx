@@ -1,28 +1,41 @@
 import Animated, {
   Extrapolate,
+  SharedValue,
   interpolate,
+  interpolateColor,
   useAnimatedStyle,
 } from 'react-native-reanimated';
 
 import React, {useMemo} from 'react';
 
-import {Dimensions, StyleSheet, View} from 'react-native';
+import {Dimensions, StyleProp, StyleSheet, View, ViewStyle} from 'react-native';
 
 const {width: SCREEN_WIDTH} = Dimensions.get('window');
 
 interface IProps {
   data: Array<object>;
-  scrollOffset: any;
+  scrollOffset: SharedValue<number>;
+  style?: StyleProp<ViewStyle>;
+  activeDotColor?: string;
+  deActiveDotColor?: string;
 }
 
-export const PaginationDot = ({data = [], scrollOffset}: IProps) => {
+export const PaginationDot = ({
+  data = [],
+  scrollOffset,
+  style,
+  activeDotColor,
+  deActiveDotColor,
+}: IProps) => {
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, style]}>
       {data.map((_, index) => (
         <PaginationDotItem
           index={index}
           scrollOffset={scrollOffset}
           key={index}
+          activeDotColor={activeDotColor}
+          deActiveDotColor={deActiveDotColor}
         />
       ))}
     </View>
@@ -32,9 +45,13 @@ export const PaginationDot = ({data = [], scrollOffset}: IProps) => {
 const PaginationDotItem = ({
   index,
   scrollOffset,
+  deActiveDotColor = 'black',
+  activeDotColor = 'blue',
 }: {
   index: number;
-  scrollOffset: any;
+  scrollOffset: SharedValue<number>;
+  deActiveDotColor?: string;
+  activeDotColor?: string;
 }) => {
   const inputRange = useMemo(
     () => [
@@ -45,6 +62,11 @@ const PaginationDotItem = ({
     [index],
   );
   const widthStyle = useAnimatedStyle(() => {
+    const backgroundColor = interpolateColor(scrollOffset.value, inputRange, [
+      deActiveDotColor,
+      activeDotColor,
+      deActiveDotColor,
+    ]);
     const width = interpolate(
       scrollOffset.value,
       inputRange,
@@ -58,7 +80,7 @@ const PaginationDotItem = ({
       Extrapolate.CLAMP,
     );
 
-    return {width, opacity};
+    return {width, opacity, backgroundColor};
   }, []);
 
   return <Animated.View style={[styles.dot, widthStyle]} />;
