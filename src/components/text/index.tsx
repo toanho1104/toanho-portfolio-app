@@ -1,8 +1,8 @@
 import {fontPixel} from '@utils/dimensions';
 
-import React from 'react';
+import React, {Component} from 'react';
 
-import {StyleSheet, Text} from 'react-native';
+import {StyleSheet, Text, TextProps} from 'react-native';
 
 export const fonts = {
   regular: {
@@ -18,6 +18,7 @@ interface IProps {
   color?: string;
   font?: 'regular' | 'bold';
   type?: 'h1' | 'h2' | 'h3' | 'title' | 'subtitle' | 'body' | 'caption';
+  style: Component<TextProps>;
 }
 
 export const MyText = ({
@@ -25,9 +26,11 @@ export const MyText = ({
   color = 'black',
   type = 'caption',
   font = 'regular',
+  style,
 }: IProps) => {
   return (
-    <Text style={StyleSheet.compose(styles[font][type], {color: color})}>
+    <Text
+      style={StyleSheet.flatten([styles[font][type], {color: color}, style])}>
       {children}
     </Text>
   );

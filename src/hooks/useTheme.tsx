@@ -15,6 +15,7 @@ interface IThemProvider {
 type TThemeMode = 'dark' | 'light';
 
 type TColor = {
+  PALETTE?: Array<string>;
   PRIMARY_DARK?: string;
   PRIMARY?: string;
   PRIMARY_LIGHT?: string;
@@ -58,6 +59,7 @@ type IThemeContext = {
 };
 
 const LightTheme: TColor = {
+  PALETTE: ['#F6CCD0', '#BBDCCA', '#B3DCE3', '#FDEEB3'],
   PRIMARY: '#052df5',
   PRIMARY_DARK: '#111111',
   BACKGROUND_PRIMARY: '#f7f5f5',

@@ -1,3 +1,4 @@
+import {useTheme} from '@hooks/useTheme';
 import Animated, {
   SharedValue,
   interpolateColor,
@@ -32,8 +33,8 @@ const ListViewIntroduce = ({onScroll, data, value, scrollOffset}: IProps) => {
   const color = useAnimatedStyle(() => {
     const backgroundColor = interpolateColor(
       value.value,
-      [0, SCREEN_WIDTH, SCREEN_WIDTH * 2],
-      ['red', 'blue', 'white'],
+      [0, SCREEN_WIDTH, SCREEN_WIDTH * 2, SCREEN_WIDTH * 3],
+      ['#F6CCD0', '#BBDCCA', '#B3DCE3', '#FDEEB3'],
     );
     return {backgroundColor: backgroundColor};
   }, []);

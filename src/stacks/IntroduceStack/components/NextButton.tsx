@@ -27,7 +27,6 @@ export const NextButton = ({scrollOffset}: IProps) => {
   const circumference = 2 * Math.PI * radius;
 
   const animatedProps = useAnimatedProps(() => {
-    console.log('aaaaa', scrollOffset.value, SCREEN_WIDTH * 2);
     const strokeDash = interpolate(
       scrollOffset.value,
       [0, SCREEN_WIDTH, SCREEN_WIDTH * 2, SCREEN_WIDTH * 3],
@@ -61,7 +60,6 @@ export const NextButton = ({scrollOffset}: IProps) => {
             r={radius}
             strokeWidth={strokeWidth}
             strokeDasharray={circumference}
-            // strokeDashoffset={circumference - (circumference * 25) / 100}
           />
         </G>
       </Svg>

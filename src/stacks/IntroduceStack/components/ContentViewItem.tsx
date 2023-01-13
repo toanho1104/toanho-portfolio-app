@@ -56,7 +56,7 @@ const RenderItem = ({content, scrollOffset, index}) => {
 
   return (
     <Animated.View style={[animatedStyles, {position: 'absolute'}]}>
-      <MyText> {content}</MyText>
+      <MyText style={styles.text}> {content}</MyText>
     </Animated.View>
   );
 };
@@ -76,4 +76,5 @@ const styles = StyleSheet.create({
     paddingBottom: heightScale(100),
     backgroundColor: 'white',
   },
+  text: {textAlign: 'center'},
 });

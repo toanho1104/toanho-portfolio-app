@@ -13,5 +13,3 @@ export const IntroduceStack = () => {
     </Stack.Navigator>
   );
 };
-
-const SCREENS_DATA = [];
