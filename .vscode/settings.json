@@ -2,5 +2,8 @@
     "cSpell.words": [
         "eidiekrir",
         "svgs"
+    ],
+    "i18n-ally.localesPaths": [
+        "locales"
     ]
 }
