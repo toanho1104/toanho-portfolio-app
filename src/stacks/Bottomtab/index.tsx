@@ -1,10 +1,12 @@
-import {CustomTabBar} from '@components/bottomTabBar';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+
+import React from 'react';
+
 import {AboutMeScreen} from '@stacks/AboutMeStack/screens/AboutMeScreen';
 import {ContactScreen} from '@stacks/ContactStack/screens/ContactScreen';
 import {SkillScreen} from '@stacks/SkillsStack/screens/SkillScreen';
 
-import React from 'react';
+import {CustomTabBar} from '@components/bottomTabBar';
 
 import {TBottomStackParamList} from '../../types/navigationType';
 

@@ -1,8 +1,8 @@
-import {fontPixel} from '@utils/dimensions';
-
 import React, {Component} from 'react';
 
 import {StyleSheet, Text, TextProps} from 'react-native';
+
+import {fontPixel} from '@utils/dimensions';
 
 export const fonts = {
   regular: {
@@ -18,7 +18,7 @@ interface IProps {
   color?: string;
   font?: 'regular' | 'bold';
   type?: 'h1' | 'h2' | 'h3' | 'title' | 'subtitle' | 'body' | 'caption';
-  style: Component<TextProps>;
+  style?: Component<TextProps>;
 }
 
 export const MyText = ({

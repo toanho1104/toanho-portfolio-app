@@ -1,12 +1,13 @@
-import {DefaultLayout} from '@components/layout/defaultLayout';
-import {LottieImage} from '@components/lottie';
-import {MyText} from '@components/text';
 import {useTheme} from '@hooks/useTheme';
 import {useTranslation} from 'react-i18next';
 
 import React from 'react';
 
 import {TouchableOpacity} from 'react-native';
+
+import {DefaultLayout} from '@components/layout/defaultLayout';
+import {LottieImage} from '@components/lottie';
+import {MyText} from '@components/text';
 
 interface IProps {}
 export const SkillScreen = ({}: IProps) => {
