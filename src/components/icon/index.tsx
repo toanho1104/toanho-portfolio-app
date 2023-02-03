@@ -15,7 +15,7 @@ interface TIconProps {
   onPress?: () => void;
 }
 
-const Icon = ({size, fill, name, onPress}: TIconProps) => {
+const MyIcon = ({size, fill = 'black', name, onPress}: TIconProps) => {
   return (
     <TouchableOpacity onPress={onPress} disabled={!onPress}>
       <SvgIcon
@@ -29,4 +29,4 @@ const Icon = ({size, fill, name, onPress}: TIconProps) => {
   );
 };
 
-export default Icon;
+export default MyIcon;

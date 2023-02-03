@@ -1,8 +1,8 @@
-import Navigation from '@stacks/index';
-
 import React from 'react';
 
 import 'react-native';
+
+import Navigation from '@stacks/index';
 
 // import Navigation from './src/stacks';
 

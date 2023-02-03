@@ -1,11 +1,12 @@
-import {DefaultLayout} from '@components/layout/defaultLayout';
-import {MyText} from '@components/text';
 import {useTheme} from '@hooks/useTheme';
 import {useTranslation} from 'react-i18next';
 
 import React from 'react';
 
 import {Text, TouchableNativeFeedback} from 'react-native';
+
+import {DefaultLayout} from '@components/layout/defaultLayout';
+import {MyText} from '@components/text';
 
 interface IProps {}
 export const ContactScreen = ({}: IProps) => {

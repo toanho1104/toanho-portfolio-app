@@ -1,7 +1,7 @@
+import React from 'react';
+
 import {DefaultLayout} from '@components/layout/defaultLayout';
 import {MyText} from '@components/text';
-
-import React from 'react';
 
 interface IProps {}
 

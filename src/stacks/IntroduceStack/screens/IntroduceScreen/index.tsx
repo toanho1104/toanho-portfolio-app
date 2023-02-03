@@ -1,22 +1,29 @@
-import {DefaultLayout} from '@components/layout/defaultLayout';
-import {PaginationDot} from '@components/paginationDot';
-import {heightScale} from '@utils/dimensions';
 import {
   useAnimatedScrollHandler,
   useSharedValue,
 } from 'react-native-reanimated';
+import {TIntroduceItem} from 'src/types/introduceType';
 
-import React from 'react';
+import React, {useCallback, useRef, useState} from 'react';
 
-import {StyleSheet} from 'react-native';
+import {FlatList, StyleSheet, ViewToken} from 'react-native';
 
-import {ContentViewItem} from '../components/ContentViewItem';
-import ListViewIntroduce from '../components/ListViewIntroduce';
-import {NextButton} from '../components/NextButton';
+import {ContentViewItem} from './components/ContentViewItem';
+import ListViewIntroduce from './components/ListViewIntroduce';
+import {NextButton} from './components/NextButton';
+import {DefaultLayout} from '@components/layout/defaultLayout';
+import {PaginationDot} from '@components/paginationDot';
+
+import {heightScale} from '@utils/dimensions';
 
 interface IProps {}
 
 export const IntroduceScreen = ({}: IProps) => {
+  const listFef = useRef<FlatList>(null);
+
+  const [dataCurrenItem, setDataCurrenItem] = useState(DATA[0]);
+  const [dataCurrenIndex, setDataCurrenIndex] = useState(0);
+
   const scrollX = useSharedValue(0);
 
   const _scrollHandler = useAnimatedScrollHandler({
@@ -25,22 +32,42 @@ export const IntroduceScreen = ({}: IProps) => {
     },
   });
 
+  const _onViewableItemsChanged = useCallback(
+    ({viewableItems}: {viewableItems: Array<ViewToken>}) => {
+      setDataCurrenItem(viewableItems[0].item);
+      setDataCurrenIndex(viewableItems[0].item.id);
+    },
+    [],
+  );
+
+  const _handleNext = () => {
+    if (dataCurrenIndex === DATA.length - 1) {
+    } else {
+      listFef?.current?.scrollToIndex({
+        animated: true,
+        index: dataCurrenIndex + 1,
+      });
+    }
+  };
+
   return (
     <DefaultLayout noneSafeView>
       <ListViewIntroduce
+        refs={listFef}
         data={DATA}
         onScroll={_scrollHandler}
         value={scrollX}
         scrollOffset={scrollX}
+        onViewableItemsChanged={_onViewableItemsChanged}
       />
 
-      <ContentViewItem scrollOffset={scrollX} data={DATA} />
+      <ContentViewItem item={dataCurrenItem} />
       <PaginationDot
         data={DATA}
         scrollOffset={scrollX}
         style={styles.dotStyle}
       />
-      <NextButton scrollOffset={scrollX} />
+      <NextButton scrollOffset={scrollX} onPress={_handleNext} />
     </DefaultLayout>
   );
 };
@@ -52,7 +79,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const DATA = [
+const DATA: TIntroduceItem[] = [
   {
     id: 0,
     title: 'Toàn Hồ',

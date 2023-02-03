@@ -1,13 +1,13 @@
-import {useTheme} from '@hooks/useTheme';
 import Animated, {
   SharedValue,
   interpolateColor,
   useAnimatedStyle,
 } from 'react-native-reanimated';
+import {TIntroduceItem} from 'src/types/introduceType';
 
 import React, {useCallback} from 'react';
 
-import {Dimensions, StyleSheet} from 'react-native';
+import {Dimensions, StyleSheet, ViewToken} from 'react-native';
 
 import {IntroduceItem} from './IntroduceItem';
 
@@ -15,12 +15,27 @@ const {width: SCREEN_WIDTH} = Dimensions.get('window');
 
 interface IProps {
   onScroll: any;
-  data: any;
+  data: TIntroduceItem[];
   value: any;
   scrollOffset: SharedValue<number>;
+  refs: any;
+  onViewableItemsChanged:
+    | ((info: {
+        viewableItems: Array<ViewToken>;
+        changed: Array<ViewToken>;
+      }) => void)
+    | null
+    | undefined;
 }
 
-const ListViewIntroduce = ({onScroll, data, value, scrollOffset}: IProps) => {
+const ListViewIntroduce = ({
+  onScroll,
+  data,
+  value,
+  scrollOffset,
+  onViewableItemsChanged,
+  refs,
+}: IProps) => {
   const renderItem = useCallback(
     ({item, index}: {item: any; index: number}) => {
       return (
@@ -42,6 +57,7 @@ const ListViewIntroduce = ({onScroll, data, value, scrollOffset}: IProps) => {
   return (
     <Animated.View style={[styles.container, color]}>
       <Animated.FlatList
+        ref={refs}
         onScroll={onScroll}
         horizontal
         data={data}
@@ -51,7 +67,8 @@ const ListViewIntroduce = ({onScroll, data, value, scrollOffset}: IProps) => {
         snapToInterval={SCREEN_WIDTH}
         decelerationRate="fast"
         snapToAlignment="center"
-        scrollEventThrottle={16}
+        scrollEventThrottle={200}
+        onViewableItemsChanged={onViewableItemsChanged}
       />
     </Animated.View>
   );

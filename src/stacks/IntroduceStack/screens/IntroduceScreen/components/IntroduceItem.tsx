@@ -1,6 +1,3 @@
-import {MyImage} from '@components/image';
-import {MyText} from '@components/text';
-import {heightScale, widthScale} from '@utils/dimensions';
 import Animated, {
   SharedValue,
   interpolate,
@@ -10,6 +7,11 @@ import Animated, {
 import React, {useMemo} from 'react';
 
 import {Dimensions, StyleSheet} from 'react-native';
+
+import {MyImage} from '@components/image';
+import {MyText} from '@components/text';
+
+import {heightScale, widthScale} from '@utils/dimensions';
 
 const {width: SCREEN_WIDTH, height: SCREEN_HEIGHT} = Dimensions.get('window');
 
@@ -31,7 +33,7 @@ export const IntroduceItem = ({item, scrollOffset, index}: IProps) => {
     [index],
   );
   const animatedStyles = useAnimatedStyle(() => {
-    const scale = interpolate(scrollOffset.value, inputRage, [0.5, 1, 0.5]);
+    const scale = interpolate(scrollOffset.value, inputRage, [0.4, 1, 0.4]);
 
     return {
       transform: [{scale}],
@@ -41,7 +43,9 @@ export const IntroduceItem = ({item, scrollOffset, index}: IProps) => {
   return (
     <Animated.View style={[styles.itemContainer, animatedStyles]}>
       <MyImage uri={image} style={styles.image} resizeMode="cover" />
-      <MyText>{title}</MyText>
+      <MyText style={styles.textStyle} font="bold" type="h1">
+        {title}
+      </MyText>
     </Animated.View>
   );
 };
@@ -52,6 +56,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     height: SCREEN_HEIGHT,
+    paddingBottom: heightScale(300),
   },
   image: {
     width: widthScale(160),
@@ -59,6 +64,8 @@ const styles = StyleSheet.create({
     borderRadius: 200,
     borderWidth: 2,
     borderColor: 'white',
-    marginBottom: heightScale(300),
+  },
+  textStyle: {
+    marginTop: heightScale(12),
   },
 });

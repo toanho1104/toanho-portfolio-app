@@ -1,6 +1,4 @@
 // import Icon from '@components/icon';
-import Icon from '@components/icon';
-import {MyText} from '@components/text';
 import {useTheme} from '@hooks/useTheme';
 import {
   BottomTabDescriptorMap,
@@ -11,13 +9,17 @@ import {
   ParamListBase,
   TabNavigationState,
 } from '@react-navigation/native';
-import {isIosPlatform} from '@utils/checks';
-import {widthScale} from '@utils/dimensions';
 import {useTranslation} from 'react-i18next';
 
 import React, {Fragment, useMemo} from 'react';
 
-import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {StyleSheet, TouchableOpacity, View} from 'react-native';
+
+import Icon from '@components/icon';
+import {MyText} from '@components/text';
+
+import {isIosPlatform} from '@utils/checks';
+import {widthScale} from '@utils/dimensions';
 
 import {TBottomStackParamList} from '../../types/navigationType';
 

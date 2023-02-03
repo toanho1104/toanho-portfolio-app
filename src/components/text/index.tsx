@@ -1,6 +1,7 @@
-import React, {Component} from 'react';
+import React from 'react';
 
-import {StyleSheet, Text, TextProps} from 'react-native';
+import {StyleProp, StyleSheet, Text} from 'react-native';
+import {TextStyle} from 'react-native';
 
 import {fontPixel} from '@utils/dimensions';
 
@@ -18,7 +19,7 @@ interface IProps {
   color?: string;
   font?: 'regular' | 'bold';
   type?: 'h1' | 'h2' | 'h3' | 'title' | 'subtitle' | 'body' | 'caption';
-  style?: Component<TextProps>;
+  style?: StyleProp<TextStyle> | undefined;
 }
 
 export const MyText = ({
@@ -41,7 +42,7 @@ const styles = {
     h1: {
       ...fonts.bold,
       fontSize: fontPixel(32),
-      lineHeight: fontPixel(38),
+      lineHeight: fontPixel(44),
     },
     h2: {
       ...fonts.bold,
@@ -79,7 +80,7 @@ const styles = {
     h1: {
       ...fonts.regular,
       fontSize: fontPixel(32),
-      lineHeight: fontPixel(38),
+      lineHeight: fontPixel(44),
     },
     h2: {
       ...fonts.regular,
