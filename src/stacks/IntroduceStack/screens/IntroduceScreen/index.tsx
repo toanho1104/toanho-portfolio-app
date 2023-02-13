@@ -1,8 +1,9 @@
+import {useMyNavigation} from '@hooks/useAppNavigation';
+import {TIntroduceItem} from '@type/introduceType';
 import {
   useAnimatedScrollHandler,
   useSharedValue,
 } from 'react-native-reanimated';
-import {TIntroduceItem} from 'src/types/introduceType';
 
 import React, {useCallback, useRef, useState} from 'react';
 
@@ -20,6 +21,8 @@ interface IProps {}
 
 export const IntroduceScreen = ({}: IProps) => {
   const listFef = useRef<FlatList>(null);
+
+  const {navigation} = useMyNavigation('Skill');
 
   const [dataCurrenItem, setDataCurrenItem] = useState(DATA[0]);
   const [dataCurrenIndex, setDataCurrenIndex] = useState(0);
@@ -42,6 +45,7 @@ export const IntroduceScreen = ({}: IProps) => {
 
   const _handleNext = () => {
     if (dataCurrenIndex === DATA.length - 1) {
+      navigation.navigate('BottomStack', {screen: 'AboutMe'});
     } else {
       listFef?.current?.scrollToIndex({
         animated: true,

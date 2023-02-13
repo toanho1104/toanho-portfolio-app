@@ -11,7 +11,7 @@ module.exports = {
           tests: ['./tests/'],
           '@components': './src/components',
           '@stacks': './src/stacks',
-          '@types': './src/types',
+          '@type': './src/types',
           '@assets': './src/assets',
           '@hooks': './src/hooks',
           '@utils': './src/utils',

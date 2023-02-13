@@ -1,4 +1,4 @@
-import {useTheme} from '@hooks/useTheme';
+import {useTheme} from '@hooks/useAppTheme';
 import {useTranslation} from 'react-i18next';
 
 import React from 'react';

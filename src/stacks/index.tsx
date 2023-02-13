@@ -1,4 +1,4 @@
-import {useTheme} from '@hooks/useTheme';
+import {useTheme} from '@hooks/useAppTheme';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 

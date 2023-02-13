@@ -1,5 +1,5 @@
 // import Icon from '@components/icon';
-import {useTheme} from '@hooks/useTheme';
+import {useTheme} from '@hooks/useAppTheme';
 import {
   BottomTabDescriptorMap,
   BottomTabNavigationEventMap,
@@ -20,8 +20,6 @@ import {MyText} from '@components/text';
 
 import {isIosPlatform} from '@utils/checks';
 import {widthScale} from '@utils/dimensions';
-
-import {TBottomStackParamList} from '../../types/navigationType';
 
 export type BottomTabBarProps = {
   state: TabNavigationState<ParamListBase>;

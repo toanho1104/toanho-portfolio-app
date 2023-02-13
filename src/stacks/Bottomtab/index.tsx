@@ -1,3 +1,7 @@
+import {
+  TBottomTabNavigatorParamList,
+  TStackItem,
+} from '@hooks/useAppNavigation';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
 import React from 'react';
@@ -8,27 +12,25 @@ import {SkillScreen} from '@stacks/SkillsStack/screens/SkillScreen';
 
 import {CustomTabBar} from '@components/bottomTabBar';
 
-import {TBottomStackParamList} from '../../types/navigationType';
-
-const Tab = createBottomTabNavigator<TBottomStackParamList>();
+const BottomTab = createBottomTabNavigator<TBottomTabNavigatorParamList>();
 
 export const BottomStack = () => {
   return (
-    <Tab.Navigator
+    <BottomTab.Navigator
       tabBar={props => <CustomTabBar {...props} />}
       screenOptions={{headerShown: false}}>
       {SCREENS_DATA.map(item => (
-        <Tab.Screen
+        <BottomTab.Screen
           key={item.key}
-          name={item.name as keyof TBottomStackParamList}
+          name={item.name}
           component={item.component}
         />
       ))}
-    </Tab.Navigator>
+    </BottomTab.Navigator>
   );
 };
 
-const SCREENS_DATA = [
+const SCREENS_DATA: TStackItem[] = [
   {
     key: 0,
     name: 'AboutMe',
