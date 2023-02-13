@@ -3,6 +3,17 @@ apply plugin: "com.android.application"
 import com.android.build.OutputFile
 import org.apache.tools.ant.taskdefs.condition.Os
 
+
+project.ext.envConfigFiles = [
+   productionDebug: ".env.production",
+   productionRelease: ".env.production",
+   developmentRelease: ".env.development",
+   developmentDebug: ".env.development",
+   stagingRelease: ".env.staging",
+   stagingDebug: ".env.staging"
+]
+
+apply from: project(':react-native-config').projectDir.getPath() + "/dotenv.gradle" // <- add this line
 /**
  * The react.gradle file registers a task for each build variant (e.g. bundleDebugJsAndAssets
  * and bundleReleaseJsAndAssets).
@@ -134,6 +145,30 @@ android {
 
     compileSdkVersion rootProject.ext.compileSdkVersion
 
+
+
+    flavorDimensions "default"
+    productFlavors {
+        production {
+            minSdkVersion rootProject.ext.minSdkVersion
+            applicationId "com.toanho_portfolio_app"
+            targetSdkVersion rootProject.ext.targetSdkVersion
+            resValue "string", "build_config_package", "com.toanho_portfolio_app"
+        }
+        staging {
+            minSdkVersion rootProject.ext.minSdkVersion
+            applicationId "com.toanho_portfolio_app.staging"
+            targetSdkVersion rootProject.ext.targetSdkVersion
+            resValue "string", "build_config_package", "com.toanho_portfolio_app"
+        }
+        development {
+            minSdkVersion rootProject.ext.minSdkVersion
+            applicationId "com.toanho_portfolio_app.development"
+            targetSdkVersion rootProject.ext.targetSdkVersion
+            resValue "string", "build_config_package", "com.toanho_portfolio_app"
+        }
+    }
+
     defaultConfig {
         applicationId "com.toanho_portfolio_app"
         minSdkVersion rootProject.ext.minSdkVersion
@@ -221,6 +256,7 @@ android {
     buildTypes {
         debug {
             signingConfig signingConfigs.debug
+            matchingFallbacks = ['debug', 'release'] 
         }
         release {
             // Caution! In production, you need to generate your own keystore file.
