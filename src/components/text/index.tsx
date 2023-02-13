@@ -14,30 +14,48 @@ export const fonts = {
   },
 };
 
+type FontTagType =
+  | 'h1'
+  | 'h2'
+  | 'h3'
+  | 'title'
+  | 'subtitle'
+  | 'body'
+  | 'caption';
+type fontFamily = 'regular' | 'bold';
+
+type TStyles = {
+  [n in fontFamily]: {[j in FontTagType]: TextStyle};
+};
+
 interface IProps {
   children?: string;
   color?: string;
-  font?: 'regular' | 'bold';
-  type?: 'h1' | 'h2' | 'h3' | 'title' | 'subtitle' | 'body' | 'caption';
+  fontFamily?: fontFamily;
+  typeTag?: FontTagType;
   style?: StyleProp<TextStyle> | undefined;
 }
 
 export const MyText = ({
   children = 'No caption',
   color = 'black',
-  type = 'caption',
-  font = 'regular',
+  typeTag = 'caption',
+  fontFamily = 'regular',
   style,
 }: IProps) => {
   return (
     <Text
-      style={StyleSheet.flatten([styles[font][type], {color: color}, style])}>
+      style={StyleSheet.flatten([
+        styles[fontFamily][typeTag],
+        {color: color},
+        style,
+      ])}>
       {children}
     </Text>
   );
 };
 
-const styles = {
+const styles: TStyles = {
   bold: StyleSheet.create({
     h1: {
       ...fonts.bold,
@@ -113,4 +131,6 @@ const styles = {
       lineHeight: fontPixel(26),
     },
   },
-} as any;
+};
+
+console.log(styles);
