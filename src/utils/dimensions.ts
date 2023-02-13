@@ -8,11 +8,23 @@ const heightBaseScale = SCREEN_HEIGHT / 896;
 
 type TBased = 'width' | 'height';
 
-const normalize = (size: number, based: TBased = 'width') => {
-  const newSize =
-    based === 'height' ? size * heightBaseScale : size * widthBaseScale;
-  return Math.round(PixelRatio.roundToNearestPixel(newSize));
-};
+const normalize = (() => {
+  // store cached to closure
+  const cached: Record<`${TBased}-${number}`, number> = {};
+
+  return (size: number, based: TBased = 'width') => {
+    //If cached hit, return normalized size
+    if (cached[`${based}-${size}`]) {
+      return cached[`${based}-${size}`];
+    }
+    //else calculate and cache
+    const newSize =
+      based === 'height' ? size * heightBaseScale : size * widthBaseScale;
+    const roundSize = Math.round(PixelRatio.roundToNearestPixel(newSize));
+    cached[`${based}-${size}`] = roundSize;
+    return roundSize;
+  };
+})();
 
 //for width  pixel
 export const widthScale = (size: number) => {
