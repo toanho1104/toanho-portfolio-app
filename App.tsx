@@ -1,8 +1,12 @@
+import Config from 'react-native-config';
+
 import React from 'react';
 
 import 'react-native';
 
 import Navigation from '@stacks/index';
+
+console.log('cònig', Config.API_URL);
 
 // import Navigation from './src/stacks';
 

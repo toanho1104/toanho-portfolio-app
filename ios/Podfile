@@ -6,8 +6,8 @@ install! 'cocoapods', :deterministic_uuids => false
 
 abstract_target 'toanho_portfolio_appCommonPods' do
   config = use_native_modules!
-
-
+  # For extensions without React dependencies
+  pod 'react-native-config/Extension', :path => '../node_modules/react-native-config'
   target 'toanho_portfolio_app' do
   end
 

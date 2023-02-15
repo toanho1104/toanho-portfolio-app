@@ -11,11 +11,10 @@
     "android:prod-release": "react-native run-android --variant=productionRelease",
     "ios:dev": "react-native run-ios --scheme 'toanho_portfolio_app_dev'",
     "ios:staging": "react-native run-ios --scheme 'toanho_portfolio_app_stg'",
-    "ios:prod": "react-native run-ios --scheme 'toanho_portfolio_app_prod'",
+    "ios:prod": "react-native run-ios --scheme 'toanho_portfolio_app'",
     "start": "react-native start",
     "test": "jest",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
-
   },
   "dependencies": {
     "@react-native-masked-view/masked-view": "^0.2.8",
