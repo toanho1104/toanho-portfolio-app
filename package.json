@@ -3,17 +3,19 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "android": "react-native run-android",
     "android:staging": "react-native run-android --variant=stagingDebug",
     "android:staging-release": "react-native run-android --variant=stagingRelease",
     "android:dev": "react-native run-android --variant=developmentDebug",
     "android:dev-release": "react-native run-android --variant=developmentRelease",
     "android:prod": "react-native run-android --variant=productionDebug",
     "android:prod-release": "react-native run-android --variant=productionRelease",
-    "ios": "react-native run-ios",
+    "ios:dev": "react-native run-ios --scheme 'toanho_portfolio_app_dev'",
+    "ios:staging": "react-native run-ios --scheme 'toanho_portfolio_app_stg'",
+    "ios:prod": "react-native run-ios --scheme 'toanho_portfolio_app_prod'",
     "start": "react-native start",
     "test": "jest",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
+
   },
   "dependencies": {
     "@react-native-masked-view/masked-view": "^0.2.8",
